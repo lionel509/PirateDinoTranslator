@@ -1,0 +1,17 @@
+As a pirate, i think you should build a software that turns all text into pirate speak.
+build simple functionality
+history 
+clear button 
+dinosuar themed 
+make it like a speach system so when you send a message the thing replys back 
+pirateDictionary.json is where Dictionary is saved 
+the footer should be 
+ <footer>
+            <p>&copy; 2024 Lionel. Licensed under the 
+                <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">MIT License</a>.
+            </p>
+            <p>View the source code on 
+                <a href="https://github.com/lionel509/pirate_dino_translator" target="_blank" rel="noopener noreferrer">GitHub</a>.
+            </p>
+        </footer>
+

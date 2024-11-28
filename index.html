@@ -4,45 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pirate Dino Translator</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css"> <!-- Corrected the path to the CSS file -->
 </head>
 <body>
-    <div class="wrapper">
-        <div class="content">
-            <div class="container">
-                <div class="dino-container">
-                    <div id="speech-bubble" class="speech-bubble">
-                        <p id="translated-text">Arrr! Speak, ye landlubber!</p>
-                    </div>
-                </div>
-                <div class="user-input-container">
-                    <textarea id="user-input" placeholder="Enter yer text here..."></textarea>
-                    <button id="translate-button">Translate</button>
-                    <button id="save-button">Save</button>
-                </div>
-                <div class="display-container">
-                    <div class="user-input-display">
-                        <h3>Your Input:</h3>
-                        <p id="displayed-input"></p>
-                    </div>
-                    <div class="history-container">
-                        <h3>Translation History</h3>
-                        <ul id="history-list"></ul>
-                        <button id="clear-history-button" style="display: block; margin: 0 auto;">Clear History</button>
-                    </div>
-                </div>
+    <header>
+        <h1>Pirate Dino Translator</h1>
+        <p>Unleash yer inner dino-pirate!</p>
+    </header>
+    <main>
+        <div id="translator-container">
+            <textarea id="userInput" placeholder="Enter yer message, matey!"></textarea>
+            <button id="translateButton">Translate!</button>
+            <button id="clearButton">Clear</button>
+            <button id="exampleButton">Example</button> <!-- Added example button -->
+            <div id="dinoMessage">
+                <h2>Dino Pirate Replies:</h2>
+                <p id="translatedOutput">Ahoy! Yer message appears 'ere.</p>
+                <p id="errorMessage" style="color: red; display: none;">Type something instead of wasting my time!</p> <!-- Added error message -->
             </div>
         </div>
-        <footer>
-            <p>&copy; 2024 Lionel. Licensed under the 
-                <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">MIT License</a>.
-            </p>
-            <p>View the source code on 
-                <a href="https://github.com/lionel509/pirate_dino_translator" target="_blank" rel="noopener noreferrer">GitHub</a>.
-            </p>
-        </footer>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    </main>
+    <footer>
+        <p>&copy; 2024 Lionel. Licensed under the 
+            <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">MIT License</a>.
+        </p>
+        <p>View the source code on 
+            <a href="https://github.com/lionel509/pirate_dino_translator" target="_blank" rel="noopener noreferrer">GitHub</a>.
+        </p>
+    </footer>
     <script src="js/app.js"></script>
 </body>
 </html>

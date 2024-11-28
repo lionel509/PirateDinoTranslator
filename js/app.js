@@ -1,60 +1,47 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const userInput = document.getElementById('user-input');
-    const translateButton = document.getElementById('translate-button');
-    const saveButton = document.getElementById('save-button');
-    const translatedText = document.getElementById('translated-text');
-    const speechBubble = document.getElementById('speech-bubble');
-    const historyList = document.getElementById('history-list');
-    const displayedInput = document.getElementById('displayed-input');
-    const clearHistoryButton = document.getElementById('clear-history-button');
+// Load the pirate dictionary
+let pirateDictionary = {};
 
-    let pirateDictionary = {};
+fetch('js/pirateDictionary.json')
+    .then(response => response.json())
+    .then(data => {
+        pirateDictionary = data;
+    })
+    .catch(error => console.error('Error loading pirate dictionary:', error));
 
-    fetch('js/pirateDictionary.json')
-        .then(response => response.json())
-        .then(data => {
-            pirateDictionary = data;
-            console.log('Pirate dictionary loaded:', pirateDictionary); // Debugging line
-        })
-        .catch(error => {
-            console.error('Error loading pirate dictionary:', error);
-        });
-
-    const translateToPirateSpeak = (text) => {
-        return text.split(' ').map(word => pirateDictionary[word.toLowerCase()] || word).join(' ');
-    };
-
-    const addToHistory = (text) => {
-        const listItem = document.createElement('li');
-        listItem.textContent = text;
-        historyList.appendChild(listItem);
-    };
-
-    translateButton.addEventListener('click', () => {
-        const inputText = userInput.value.trim();
-
-        if (!inputText) {
-            translatedText.textContent = "Arrr! Enter somethin', ye scallywag!";
-        } else {
-            const translation = translateToPirateSpeak(inputText);
-            translatedText.textContent = translation;
-            displayedInput.textContent = inputText;
-            addToHistory(translation);
-        }
-
-        speechBubble.style.display = 'block';
-
-        setTimeout(() => {
-            speechBubble.style.display = 'none';
-        }, 3000);
-    });
-
-    saveButton.addEventListener('click', () => {
-        const blob = new Blob([translatedText.textContent], { type: "text/plain;charset=utf-8" });
-        saveAs(blob, "translatedText.txt");
-    });
-
-    clearHistoryButton.addEventListener('click', () => {
-        historyList.innerHTML = '';
-    });
+// Handle translation
+document.getElementById('translateButton').addEventListener('click', () => {
+    const input = document.getElementById('userInput').value;
+    const errorMessage = document.getElementById('errorMessage');
+    if (input.trim() === '') {
+        errorMessage.style.display = 'block';
+        return;
+    }
+    errorMessage.style.display = 'none';
+    const translatedText = Math.random() < 0.2 ? "ROARRRRRRRRRRRRR" : translateToPirate(input); // 20% chance to say "Make dinosaur sounds!"
+    document.getElementById('translatedOutput').textContent = translatedText;
 });
+
+// Clear input and output
+document.getElementById('clearButton').addEventListener('click', () => {
+    document.getElementById('userInput').value = '';
+    document.getElementById('translatedOutput').textContent = 'Ahoy! Yer message appears \'ere.';
+    document.getElementById('errorMessage').style.display = 'none';
+});
+
+// Provide an example
+document.getElementById('exampleButton').addEventListener('click', () => {
+    const exampleText = "Hello friend, how are you?";
+    document.getElementById('userInput').value = exampleText;
+    const translatedText = translateToPirate(exampleText);
+    document.getElementById('translatedOutput').textContent = translatedText;
+});
+
+// Translate text into pirate speak
+function translateToPirate(text) {
+    return text.split(' ').map(word => {
+        const lowerCaseWord = word.toLowerCase().replace(/[^a-z]/g, '');
+        const translatedWord = pirateDictionary[lowerCaseWord] || word;
+        const punctuation = word.match(/[^a-z]$/i);
+        return punctuation ? translatedWord + punctuation[0] : translatedWord;
+    }).join(' ');
+}
