@@ -1,7 +1,7 @@
 # Pirate Dino Translator
 
 This project translates user input into pirate speak with a fun dinosaur animation. Perfect for pirates and dino enthusiasts alike!
-https://lionel509.github.io/pirate_dino_translator/
+https://lionel509.github.io/PirateDinoTranslator/
 
 ## Features
 
